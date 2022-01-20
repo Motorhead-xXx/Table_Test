@@ -17,7 +17,7 @@ export const renderTable = (dataArray) => {
 
     document.querySelectorAll('.statusBtn').forEach((item, index) => {
         item.addEventListener('click', () => {
-            document.querySelectorAll('.row-table').forEach(m => m.remove())
+            document.querySelectorAll('.row-table').forEach(m => m.parentNode.remove())
             document.querySelectorAll('.childElements').forEach(m => m.remove())
             filterStatus = index
             changeFilterStatus()
@@ -70,8 +70,7 @@ export const renderTable = (dataArray) => {
                     <td>${rowTable.name}</td>
                     <td>${rowTable.email}</td>
                 </tr>
-
-                     ${dataArray.filter(parentFilter => parentFilter.parentId === rowTable.parentId)
+                     ${dataArray.filter(parentFilter => parentFilter.id === rowTable.parentId)
             .filter(f => f.id !== rowTable.id)
             .map(rowChild => `
                 <tr id="${rowTable.id}" class="childElements">
