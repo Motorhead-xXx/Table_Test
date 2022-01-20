@@ -84,3 +84,12 @@ th {
     background: #117003;
     color: #fff;
 }
+
+.childElementYes{
+    color: #117003;
+    font-size: 20px;
+}
+.childElementNo{
+    color: rgba(210, 25, 25, 0.2);
+    font-size: 20px;
+}

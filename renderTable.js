@@ -59,12 +59,13 @@ export const renderTable = (dataArray) => {
     function addTable() {
         const changeClass = (nameItem) => nameItem.isActive ? "colorActiveStatus" : "colorNotActiveStatus";
         const changeStatusName = (nameItem) => nameItem.isActive ? "active" : "not active";
+        const childClassName = (item) => item.parentId !== 0? "childElementYes":"childElementNo";
 
         tableWrapper.insertAdjacentHTML('beforeend', (`
          ${filterArray().map(rowTable => `
                 <tr id=${rowTable.id} class="row-table">
                     <td>${rowTable.id}</td>
-                    <td> ${rowTable.parentId !== 0? "yes":"no"}</td>
+                    <td class=${childClassName(rowTable)}> ${rowTable.parentId !== 0? "yes":"no"}</td>
                     <td class=${changeClass(rowTable)}>${changeStatusName(rowTable)}</th>
                     <td>${rowTable.balance}</td>
                     <td>${rowTable.name}</td>
