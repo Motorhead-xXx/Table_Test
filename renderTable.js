@@ -64,7 +64,7 @@ export const renderTable = (dataArray) => {
          ${filterArray().map(rowTable => `
                 <tr id=${rowTable.id} class="row-table">
                     <td>${rowTable.id}</td>
-                    <td> ${rowTable.parentId}</td>
+                    <td> ${rowTable.parentId !== 0? "yes":"no"}</td>
                     <td class=${changeClass(rowTable)}>${changeStatusName(rowTable)}</th>
                     <td>${rowTable.balance}</td>
                     <td>${rowTable.name}</td>
@@ -75,7 +75,7 @@ export const renderTable = (dataArray) => {
             .map(rowChild => `
                 <tr id="${rowTable.id}" class="childElements">
                     <th>${rowChild.id}</th>
-                    <th> ${rowChild.parentId}</th>
+                    <th> ${rowChild.parentId !== 0? "yes":"no"}</th>
                     <th class = ${changeClass(rowChild)}>${changeStatusName(rowChild)}</th>
                     <th>${rowChild.balance}</th>
                     <th>${rowChild.name}</th>
