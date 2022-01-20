@@ -2,17 +2,16 @@ export const renderTable = (dataArray) => {
     const tableWrapper = document.querySelector('.tableWrapper');
     let filterStatus = 0;
 
-
     const listOpen = () => {
-            document.querySelectorAll('.row-table').forEach(item => item.addEventListener('click', () => {
-                    document.querySelectorAll('.childElements').forEach(f => {
-                        if (f.id === item.id) {
-                            item.classList.toggle('change-color')
-                            f.classList.toggle('open')
-                        }
-                    })
+        document.querySelectorAll('.row-table').forEach(item => item.addEventListener('click', () => {
+                document.querySelectorAll('.childElements').forEach(f => {
+                    if (f.id === item.id) {
+                        item.classList.toggle('change-color')
+                        f.classList.toggle('open')
+                    }
                 })
-            )
+            })
+        )
     }
 
     document.querySelectorAll('.statusBtn').forEach((item, index) => {
@@ -24,10 +23,10 @@ export const renderTable = (dataArray) => {
         })
     })
 
-
     function changeFilterStatus() {
         addTable()
         listOpen()
+
         if (filterStatus === 0) {
             document.getElementById('b0').classList.add('active')
         } else {
@@ -44,6 +43,7 @@ export const renderTable = (dataArray) => {
             document.getElementById('b2').classList.remove('active')
         }
     }
+
 
     function filterArray() {
         switch (filterStatus) {
@@ -70,7 +70,7 @@ export const renderTable = (dataArray) => {
                     <td>${rowTable.name}</td>
                     <td>${rowTable.email}</td>
                 </tr>
-
+               
                      ${dataArray.filter(parentFilter => parentFilter.parentId === rowTable.parentId)
             .filter(f => f.id !== rowTable.id)
             .map(rowChild => `
