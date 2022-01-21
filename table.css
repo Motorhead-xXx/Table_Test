@@ -5,22 +5,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
-table {
-    border: 1px solid black;
+.d-table{
+    display: table;
+    width: 80%;
     border-collapse: collapse;
-    width: 70%;
+    border: 1px solid #000;
     text-align: center;
-}
-
-td {
-    border: 1px solid black;
-    padding: 10px;
-    font-size: 17px;
-}
-
-th {
-    padding: 3px;
-    font-size: 15px;
 }
 
 .container {
@@ -31,16 +21,35 @@ th {
     margin: 30px auto;
 }
 
+.d-tr{
+    display: table-row;
+    height: 40px;
+}
+
+.d-td{
+    display: table-cell;
+    text-align: center;
+    border: 1px solid #000;
+    vertical-align: middle;
+}
+.d-th{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
 .header {
     font-weight: 800;
     background: #242222;
     color: #fff;
     font-size: 20px;
     height: 70px;
+    display: table-row;
 }
 
 .row-table:hover {
-    background: #a7a4a4;
+    background: #b3b061;
     cursor: pointer;
 }
 
@@ -52,11 +61,16 @@ th {
     pointer-events: none;
     background: #83aa7d;
     color: #fff;
+    height: 20px;
+    font-size: 15px;
+}
+
+.d-trg.containerChildRows{
     display: none;
 }
 
-.childElements.open {
-    display: table-row;
+.d-trg.containerChildRows.open {
+    display: table-row-group;
 }
 
 .colorActiveStatus {
@@ -65,7 +79,7 @@ th {
 }
 
 .colorNotActiveStatus {
-    color: #9e1212;
+    color: #c50000;
     font-weight: 800;
 }
 
@@ -76,7 +90,7 @@ th {
 }
 
 .statusBtn {
-    padding: 5px 15px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
@@ -92,4 +106,8 @@ th {
 .childElementNo{
     color: rgba(210, 25, 25, 0.2);
     font-size: 20px;
+}
+
+.d-trg{
+    display: table-row-group;
 }
