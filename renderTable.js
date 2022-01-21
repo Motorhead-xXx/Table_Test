@@ -16,10 +16,10 @@ export const renderTable = (dataArray) => {
             document.querySelectorAll('.d-trg.containerChildRows').forEach(f => {
                 if (item.id === f.id && f.children.length > 0) {
                     item.children[1].innerHTML = `<img src="./img/yesChild.png" alt="yes child element">`
+                    item.classList.add('colorRow')
                 }
                 if (item.id === f.id && f.children.length === 0) {
                     item.children[1].innerHTML = `<img src="./img/no.png" alt="no child element">`
-                    item.children[1].classList.add('childElementNo')
                 }
             })
         })
