@@ -2,32 +2,10 @@ export const renderTable = (dataArray) => {
     const tableWrapper = document.querySelector('.tableWrapper');
     let filterStatus = 0;
 
-
-    const listOpen = () => {
-            document.querySelectorAll('.row-table').forEach(item => item.addEventListener('click', () => {
-                    document.querySelectorAll('.childElements').forEach(f => {
-                        if (f.id === item.id) {
-                            item.classList.toggle('change-color')
-                            f.classList.toggle('open')
-                        }
-                    })
-                })
-            )
-    }
-
-    document.querySelectorAll('.statusBtn').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            document.querySelectorAll('.row-table').forEach(m => m.parentNode.remove())
-            document.querySelectorAll('.childElements').forEach(m => m.remove())
-            filterStatus = index
-            changeFilterStatus()
-        })
-    })
-
-
     function changeFilterStatus() {
+
         addTable()
-        listOpen()
+
         if (filterStatus === 0) {
             document.getElementById('b0').classList.add('active')
         } else {
@@ -43,6 +21,39 @@ export const renderTable = (dataArray) => {
         } else {
             document.getElementById('b2').classList.remove('active')
         }
+
+        document.querySelectorAll('.row-table').forEach(item =>
+            item.onclick = function () {
+                document.querySelectorAll('.d-trg.containerChildRows').forEach(f => {
+                    if (item.id === f.id && f.children.length > 0) {
+                        f.classList.toggle('open')
+                        item.classList.toggle('change-color')
+                        console.log()
+
+                    }
+                })
+            })
+
+        document.querySelectorAll('.row-table').forEach(item => {
+            document.querySelectorAll('.d-trg.containerChildRows').forEach(f => {
+                if (item.id === f.id && f.children.length > 0) {
+                    item.children[1].innerHTML = `<img src="./img/yesChild.png">`
+                }
+                if (item.id === f.id && f.children.length === 0) {
+                    item.children[1].innerHTML = `<img src="./img/no.png">`
+                    item.children[1].classList.add('childElementNo')
+                }
+            })
+        })
+
+        document.querySelectorAll('.statusBtn').forEach((item, index) => {
+            item.onclick = function () {
+                document.querySelectorAll('.row-table').forEach(m => m.remove())
+                document.querySelectorAll('.d-trg.containerChildRows').forEach(m => m.remove())
+                filterStatus = index
+                changeFilterStatus()
+            }
+        })
     }
 
     function filterArray() {
@@ -59,31 +70,32 @@ export const renderTable = (dataArray) => {
     function addTable() {
         const changeClass = (nameItem) => nameItem.isActive ? "colorActiveStatus" : "colorNotActiveStatus";
         const changeStatusName = (nameItem) => nameItem.isActive ? "active" : "not active";
-        const childClassName = (item) => item.parentId !== 0? "childElementYes":"childElementNo";
 
         tableWrapper.insertAdjacentHTML('beforeend', (`
          ${filterArray().map(rowTable => `
-                <tr id=${rowTable.id} class="row-table">
-                    <td>${rowTable.id}</td>
-                    <td class=${childClassName(rowTable)}> ${rowTable.parentId !== 0? "yes":"no"}</td>
-                    <td class=${changeClass(rowTable)}>${changeStatusName(rowTable)}</th>
-                    <td>${rowTable.balance}</td>
-                    <td>${rowTable.name}</td>
-                    <td>${rowTable.email}</td>
-                </tr>
-                     ${dataArray.filter(parentFilter => parentFilter.id === rowTable.parentId)
-            .filter(f => f.id !== rowTable.id)
-            .map(rowChild => `
-                <tr id="${rowTable.id}" class="childElements">
-                    <th>${rowChild.id}</th>
-                    <th> ${rowChild.parentId !== 0? "yes":"no"}</th>
-                    <th class = ${changeClass(rowChild)}>${changeStatusName(rowChild)}</th>
-                    <th>${rowChild.balance}</th>
-                    <th>${rowChild.name}</th>
-                    <th>${rowChild.email}</th>
-                </tr> `).join(' ')} `
-        ).join(' ')}  `))
+                <div id=${rowTable.id} class="d-tr row-table">
+                    <div class="d-td">${rowTable.id}</div>
+                    <div class="d-td"></div>
+                    <div class='d-td ${changeClass(rowTable)}'>${changeStatusName(rowTable)}</div>
+                    <div class="d-td">${rowTable.balance}</div>
+                    <div class="d-td">${rowTable.name}</div>
+                    <div class="d-td">${rowTable.email}</div>
+                </div>
+
+                <div id=${rowTable.id} class="d-trg containerChildRows">
+                ${dataArray.filter(parentFilter => parentFilter.parentId === rowTable.id).map(rowChild => `
+                <div class="d-tr childElements">
+                    <div class="d-th">${rowChild.id}</div>
+                    <div class="d-th"> parent id: ${rowChild.parentId}</div>
+                    <div class='d-th ${changeClass(rowChild)}'> ${changeStatusName(rowChild)}</div>
+                    <div class="d-th">${rowChild.balance}</div>
+                    <div class="d-th">${rowChild.name}</div>
+                    <div class="d-th">${rowChild.email}</div>
+                </div> `).join(' ')}
+                </div>
+                `).join(' ')}  `))
     }
 
     changeFilterStatus()
+
 }
