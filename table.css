@@ -53,6 +53,10 @@
     cursor: pointer;
 }
 
+.row-table.none {
+    display: none;
+}
+
 .row-table.change-color {
     background: #b3b061;
 }
@@ -62,7 +66,7 @@
     background: #83aa7d;
     color: #fff;
     height: 20px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .d-trg.containerChildRows{
