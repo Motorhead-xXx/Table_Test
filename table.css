@@ -82,7 +82,7 @@
 }
 
 .colorActiveStatus {
-    color: #048904;
+    color: #149500;
     font-weight: 800;
 }
 
@@ -103,8 +103,9 @@
 }
 
 .statusBtn.active {
-    background: #117003;
+    background: #149500;
     color: #fff;
+    pointer-events: none;
 }
 
 .d-trg{
