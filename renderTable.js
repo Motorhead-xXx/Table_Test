@@ -109,7 +109,7 @@ export const renderTable = (dataArray) => {
                 <div class="d-tr childElements">
                     <div class="d-th">${rowChild.id}</div>
                     <div class="d-th"> parent id: ${rowChild.parentId}</div>
-                    <div class='d-th ${changeClass(rowChild)}'> ${changeStatusName(rowChild)}</div>
+                    <div class='d-th'> ${changeStatusName(rowChild)}</div>
                     <div class="d-th">${rowChild.balance}</div>
                     <div class="d-th">${rowChild.name}</div>
                     <div class="d-th">${rowChild.email}</div>
